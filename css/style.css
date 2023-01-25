@@ -3,3 +3,104 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+body{
+    font-family: 'Roboto', sans-serif;
+    background-color: #FAFAFA;
+}
+
+header{
+    background-color: #EC362D;
+    width: 100%;
+    height: 69px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+header h1{
+    font-weight: 700;
+    font-size: 37px;
+    line-height: 43px;
+    color: #FFFFFF;
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+}
+
+.createQuizz{
+    width: 340px;
+    height: 181px;
+    border: 1px dashed #D4D4D4;
+    border-radius: 5px;
+    margin-top: 31px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.createQuizz p{
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 23px;
+    color: #B9B9B9;
+    text-align: center;
+}
+
+.createQuizz button{
+    width: 151px;
+    height: 40px;
+    border: 1px dashed #EC362D;
+    border-radius: 50px;
+    background-color: 
+    #FAFAFA;
+    color: #EC362D;
+    font-size: 21px;
+    font-weight: 400;
+    line-height: 24px;
+    margin-top: 20px;
+}
+
+.topQuizzes{
+    width: 100vw;
+    margin-top: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.topQuizzes h1{
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 23px;
+    margin-left: 15px;
+}
+
+.topQuizzes button{
+    border: none;
+    background-color: #FAFAFA;
+}
+
+.topQuizzes ion-icon{
+    width: 31px;
+    height: 30px;
+    color:#EC362D;
+    margin-right: 15px;
+}
+
+.hidden{
+    display: none;
+}
+
+
+@media (min-width: 1100px) {
+
+    .createQuizz{
+        width: 1051px;
+        margin-top: 77px;
+    }
+}
