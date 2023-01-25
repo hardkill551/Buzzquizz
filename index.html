@@ -18,7 +18,7 @@
             <h1>BuzzQuizz</h1>
         </header>
 
-        <div class="container">
+        <div class="container hidden">
             <div class="createQuizz hidden">
                 <p>Você não criou nenhum <br /> quizz ainda :(</p>
                 <button>Criar Quizz</button>
@@ -42,7 +42,7 @@
                     </ul>
                 <button>Prosseguir pra criar perguntas</button>
             </section>
-            <section class="question_creation hidden">
+            <section class="quiz_creation hidden">
                 <h2>Crie suas perguntas</h2>
                 <ul class="box_question">
                     <h3>Pergunta 1</h3>
@@ -68,6 +68,34 @@
                     <img src="images/Vector.png" alt="">
                 </ul>
             <button>Prosseguir pra criar níveis</button>
+            </section>
+            <section class="quiz_creation hidden">
+                <h2>Agora, decida os níveis</h2>
+                    <ul class="levels">
+                        <h3>Nível 1</h3>
+                        <input type="text" placeholder="Título do seu nível"><br>
+                        <input type="text" placeholder="% de acerto mínima"><br>
+                        <input type="text" placeholder="URL da imagem do nível"><br>
+                        <input type="text" placeholder="Descrição do nível">
+                    </ul>
+                    <ul class="other_question">
+                        <h3>Nível 2</h3>
+                        <img src="images/Vector.png" alt="">
+                    </ul>
+                    <ul class="other_question">
+                        <h3>Nível 3</h3>
+                        <img src="images/Vector.png" alt="">
+                    </ul>
+                <button class="button_finish">Finalizar quiz</button>
+            </section>
+            <section class="quiz_creation hidden">
+                <h2>Seu quizz está pronto!</h2>
+                <div class="img_potterhead">
+                    <img src="images/O quão potterhead é você.png" alt="">
+                    <p>O quão Potterhead é você?</p>
+                </div>
+                <button class="button_acess">Acessar quiz</button>
+                <button class="button_home">Voltar para home</button>
             </section>
         </main>
 
