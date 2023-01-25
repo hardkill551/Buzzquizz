@@ -103,4 +103,120 @@ header h1{
         width: 1051px;
         margin-top: 77px;
     }
+    .topQuizzes{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+
+
+
+
+
+
+
+
+
+
+
+
+    main h2:first-child{
+        font-weight:700;
+        font-size: 23px;
+        margin-bottom: 27px;
+    }
+
+    input{
+        width: 564px;
+        height: 46px;
+        border: 1px solid #D1D1D1;
+        border-radius: 5px;
+        padding-left: 20px; 
+        font-weight: 400;
+        font-size: 19px;
+        outline: 0;
+    }
+    input::placeholder{
+        font-weight: 400;
+        font-size: 19px;
+        color: #BABABA;
+        font-style: italic;
+    }
+    main button{
+        width: 370px;
+        height: 54px;
+        background-color: #EC362D;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 400;
+        font-size:21px;
+        color: #FFF5F4;
+        margin-top:80px;
+        border: 0px;
+        border-radius: 15px;
+        margin-bottom:80px
+    }
+
+    .quiz_creation{
+        margin-top: 71px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+    }
+
+    .questions{
+        background-color: #FFFFFF;
+        width: 600px;
+        height: 256px;
+        display: flex;
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    .question_creation{
+        margin-top: 71px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .box_question{
+        background-color: #FFFFFF;
+        width: 600px;
+        height: 825px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 27px 17px;
+    }
+    h3{
+        font-weight: 700;
+        font-size: 20px;
+    }
+    .margin-questions{
+        margin-top:-10px;
+        margin-bottom: 10px;
+    }
+    .other_question{
+        width: 600px;
+        height: 74px;
+        margin-top: 24px;
+        background-color: #FFFFFF;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px;
+    }
+
+
+
+
+
+
+    .hidden{
+        display: none;
+    }
+
 }

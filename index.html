@@ -23,7 +23,6 @@
                 <p>Você não criou nenhum <br /> quizz ainda :(</p>
                 <button>Criar Quizz</button>
             </div>
-
             <div class="yourQuizzes">
                 <div class="topQuizzes">
                     <h1>Seus Quizzes</h1>
@@ -31,6 +30,46 @@
                 </div>
             </div>
         </div>
+
+        <main>
+            <section class="quiz_creation hidden">
+                <h2>Comece pelo começo</h2>
+                    <ul class="questions">
+                        <input type="text" placeholder="Título do seu quizz"><br>
+                        <input type="text" placeholder="URL da imagem do seu quizz"><br>
+                        <input type="text" placeholder="Quantidade de perguntas do quizz"><br>
+                        <input type="text" placeholder="Quantidade de níveis do quizz">
+                    </ul>
+                <button>Prosseguir pra criar perguntas</button>
+            </section>
+            <section class="question_creation hidden">
+                <h2>Crie suas perguntas</h2>
+                <ul class="box_question">
+                    <h3>Pergunta 1</h3>
+                    <input type="text" placeholder="Texto da pergunta">
+                    <input type="text" class="margin-questions" placeholder="Cor de fundo da pergunta">
+                    <h3>Resposta correta</h3>
+                    <input type="text" placeholder="Resposta correta">
+                    <input type="text" class="margin-questions"placeholder="URL da imagem">
+                    <h3>Respostas incorretas</h3>
+                    <input type="text" placeholder="Resposta incorreta 1">
+                    <input type="text" class="margin-questions"placeholder="URL da imagem 1">
+                    <input type="text" placeholder="Resposta incorreta 2">
+                    <input type="text" class="margin-questions" placeholder="URL da imagem 2">
+                    <input type="text" placeholder="Resposta incorreta 3">
+                    <input type="text" class="margin-questions" placeholder="URL da imagem 3">
+                </ul>
+                <ul class="other_question">
+                    <h3>Pergunta 2</h3>
+                    <img src="images/Vector.png" alt="">
+                </ul>
+                <ul class="other_question">
+                    <h3>Pergunta 3</h3>
+                    <img src="images/Vector.png" alt="">
+                </ul>
+            <button>Prosseguir pra criar níveis</button>
+            </section>
+        </main>
 
         <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
