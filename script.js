@@ -17,7 +17,8 @@ function ShowQuizzes(response){
         `<div class="quizz" onclick="enterQuizz(this)">
             <span class="idQuiz hidden">${quizList[i].id}</span>
             <h2>${quizList[i].title} </h2>
-            <img src="${quizList[i].image}"> 
+            <img src="${quizList[i].image}">
+            <div class="gradient"></div> 
         </div>`
 
     }
@@ -31,6 +32,7 @@ function enterQuizz(divElement){
 
 function openQuiz(response){
     console.log(response)
+    document.querySelector('.container').classList.add('hidden')
 }
 
 function createQuizz(){
