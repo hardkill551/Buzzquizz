@@ -54,6 +54,39 @@ function createQuizz(){
     document.querySelector('.container').classList.add('hidden')
     document.querySelector('.quiz_creation').classList.remove('hidden')
 }
+
+function validateTitle(){
+    let firstinput = document.querySelector(".questions input:first-child").value
+    let secondinput = document.querySelector(".questions input:nth-child(3)").value
+    let thirdinput = document.querySelector(".questions input:nth-child(5)").value
+    let fourthinput = document.querySelector(".questions input:nth-child(7)").value
+    if (firstinput.length<20 || firstinput.length>65 ){
+        alert("Quantia de caracteres inválida, insira uma quantia entre 20 ou 65")
+        return
+    }
+    try {
+        let url = new URL(secondinput)
+      } catch(err) {
+          alert("Insira uma URL válida")
+          return
+      }
+    if (!isNumber(thirdinput) || thirdinput<3){
+        alert("A quantia de perguntas não pode ser menor do que 3")
+        return
+    }
+    if (!isNumber(fourthinput) || fourthinput<2){
+        alert("A quantia de níveis não pode ser menos do que 2")
+        return
+    }
+}
+
+function isNumber(n) {
+    return !isNaN(parseInt(n));
+}
+
+
+
+
 // Gustavo Aqui
 
 
