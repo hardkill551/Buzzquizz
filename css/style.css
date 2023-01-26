@@ -17,6 +17,9 @@ header{
     display: flex;
     justify-content: center;
     align-items: center;
+    position: fixed;
+    top: 0;
+    z-index: 1;
 }
 
 header h1{
@@ -27,6 +30,7 @@ header h1{
 }
 
 .container{
+    margin-top: 69px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -94,6 +98,48 @@ header h1{
     margin-right: 15px;
 }
 
+.allQuizzes{
+    display: flex;
+    flex-direction: column;
+}
+
+.allQuizzes h1{
+    margin-top: 35px;
+    margin-bottom: 14px;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
+}
+
+.quizzes{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.quizzes img{
+    width: 340px;
+    height: 181px;
+    border-radius: 5px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 64.58%, #000000 100%);
+}
+
+.quizz{
+    width: 340px;
+    height: 181px;
+    position: relative;
+    margin-bottom: 14px;
+}
+
+.quizzes h2{
+    font-size: 19px;
+    line-height: 22px;
+    color: #FFFFFF;
+    position: absolute;
+    bottom: 7px;
+    margin-left: 18px;
+}
+
 .hidden{
     display: none;
 }
@@ -111,6 +157,24 @@ header h1{
         justify-content: center;
     }
     
+    .allQuizzes{
+        display: flex;
+        flex-direction: column;
+        width: 1051px;
+    }
+
+    .quizzes{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    .container{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 
 
 

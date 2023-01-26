@@ -14,9 +14,9 @@ function ShowQuizzes(response){
     for(let i = 0 ; i < quizList.length ; i++){
 
         quizzes.innerHTML +=
-        `<div onclick="enterQuizz(this)">
-            <span class="idQuiz">${quizList[i].id}</span>
-            <h1>${quizList[i].title} </h1>
+        `<div class="quizz" onclick="enterQuizz(this)">
+            <span class="idQuiz hidden">${quizList[i].id}</span>
+            <h2>${quizList[i].title} </h2>
             <img src="${quizList[i].image}"> 
         </div>`
 
@@ -31,6 +31,11 @@ function enterQuizz(divElement){
 
 function openQuiz(response){
     console.log(response)
+}
+
+function createQuizz(){
+    document.querySelector('.container').classList.add('hidden')
+    document.querySelector('.quiz_creation').classList.remove('hidden')
 }
 // Gustavo Aqui
 

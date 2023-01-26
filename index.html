@@ -19,18 +19,18 @@
         </header>
 
         <div class="container">
-            <div class="createQuizz hidden">
+            <div class="createQuizz">
                 <p>Você não criou nenhum <br /> quizz ainda :(</p>
-                <button>Criar Quizz</button>
+                <button onclick="createQuizz()">Criar Quizz</button>
             </div>
             <div class="yourQuizzes hidden">
                 <div class="topQuizzes">
                     <h1>Seus Quizzes</h1>
-                    <button><ion-icon name="add-circle"></ion-icon></button>
+                    <button onclick="createQuizz()"><ion-icon name="add-circle"></ion-icon></button>
                 </div>
             </div>
             <div class="allQuizzes">
-                <h1>Todos os quizzes</h1>
+                <h1>Todos os Quizzes</h1>
                 <div class="quizzes"> </div>
             </div>
         </div>
