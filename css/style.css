@@ -149,6 +149,37 @@ header h1{
     z-index: 3;
 }
 
+.topQuizzPage{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.gradient-color{
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 74.58%, #000000 100%);
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.topQuizzPage img{
+    margin-top: 69px;
+    width: 100%;
+    height: 142px;
+    object-fit: cover;
+}
+
+.topQuizzPage h1{
+    font-size: 19px;
+    line-height: 22px;
+    color: #FFFFFF;
+    position: absolute;
+    z-index: 3;
+    bottom: 71px;
+}
+
 .hidden{
     display: none;
 }
@@ -185,6 +216,12 @@ header h1{
         align-items: center;
     }
 
+    .quizzPage img{
+        margin-top: 69px;
+        width: 100%;
+        height: 227px;
+        object-fit: cover;
+    }
 
 
 
