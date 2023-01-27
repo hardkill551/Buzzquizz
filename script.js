@@ -47,29 +47,35 @@ function openQuiz(response){
     </div>`
 
     for (let i = 0; i < questions.length; i++) {
+        questions[i].answers.sort(shuffle);
         topQuizz.innerHTML +=
         ` <div class="firstQuestion">
 
         <div class="title">
             <h1>${questions[i].title}</h1>
         </div>
-        <div class="answers">
+        <div class="answer">
         </div>`
 
         color = document.querySelectorAll('.title')
         color[i].style.background = `${questions[i].color}`
 
-        answers = document.querySelector('.answers')
+        answers = document.querySelectorAll('.answer');
+
         for(let a = 0; a < questions[i].answers.length; a++){
             answers[i].innerHTML += 
-            `<div class="answer">
+            `
+            <div class="answers">
             <img src="${questions[i].answers[a].image}">
             <h2>${questions[i].answers[a].text}</h2>
             </div>
+            
             `
         }
     }
 
+function shuffle() { 
+    return Math.random() - 0.5; 
 }
 
 function createQuizz(){
@@ -197,5 +203,4 @@ function finalizationQuiz(answer){
         console.log(text);
     }
 }
-
-// Gustavo Here
+}

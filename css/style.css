@@ -203,7 +203,7 @@ header h1{
     text-align: center;
 }
 
-.answers{
+.answer{
     width: 340px;
     margin-top: 13px;
     display: flex;
@@ -390,7 +390,7 @@ h3{
         height: 138px;
     }
 
-    .answers{
+    .answer{
         width: 690px;
         display: flex;
         flex-wrap: wrap;
