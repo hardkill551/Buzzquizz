@@ -318,7 +318,7 @@ h3{
 .levels{
     background-color: #FFFFFF;
     width: 375px;
-    height: 316px;
+    height: 439px;
     display: flex;
     flex-direction: column;
     padding: 20px;
@@ -355,6 +355,9 @@ h3{
     font-weight: 400;
     bottom:23px;
     left: 23px;
+}
+.levels input:nth-child(8){
+    height: 177px;
 }
 .hidden{
     display: none;
@@ -425,6 +428,7 @@ h3{
     }
     .levels{
         width: 600px;
+        height: 316px;
     }
     main h2:first-child{
         font-size: 23px;
@@ -434,6 +438,9 @@ h3{
     }
     .quiz_creation{
         margin-top: 140px;
+    }
+    .levels input:nth-child(8){
+        height: 46px;
     }
     .hidden{
         display: none;

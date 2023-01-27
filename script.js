@@ -61,29 +61,89 @@ function createQuizz(){
 }
 
 function validateTitle(){
-    let firstinput = document.querySelector(".questions input:first-child").value
-    let secondinput = document.querySelector(".questions input:nth-child(3)").value
-    let thirdinput = document.querySelector(".questions input:nth-child(5)").value
-    let fourthinput = document.querySelector(".questions input:nth-child(7)").value
-    if (firstinput.length<20 || firstinput.length>65 ){
+    let quizzTitle = document.querySelector(".questions input:first-child").value
+    let quizzImage = document.querySelector(".questions input:nth-child(3)").value
+    let amountQuestions = document.querySelector(".questions input:nth-child(5)").value
+    let amountLevels = document.querySelector(".questions input:nth-child(7)").value
+    if (quizzTitle.length<20 || quizzTitle.length>65 ){
         alert("Quantia de caracteres inválida, insira uma quantia entre 20 ou 65")
         return
     }
     try {
-        let url = new URL(secondinput)
+        let url = new URL(quizzImage)
       } catch(err) {
           alert("Insira uma URL válida")
           return
       }
-    if (!isNumber(thirdinput) || thirdinput<3){
+    if (!isNumber(amountQuestions) || amountQuestions<3){
         alert("A quantia de perguntas não pode ser menor do que 3")
         return
     }
-    if (!isNumber(fourthinput) || fourthinput<2){
+    if (!isNumber(amountLevels) || amountLevels<2){
         alert("A quantia de níveis não pode ser menos do que 2")
         return
     }
+    document.querySelector('.quiz_creation').classList.add('hidden')
+    document.querySelector('main .quiz_creation:nth-child(2)').classList.remove('hidden')
 }
+function validateQuestion(){
+    let questionTitle = document.querySelector(".box_question input:nth-child(2)").value
+    let colorQuestion = document.querySelector(".box_question input:nth-child(3)").value
+    let answerCorrect = document.querySelector(".box_question input:nth-child(5)").value
+    let imageCorrect = document.querySelector(".box_question input:nth-child(6)").value
+    let answerWrong1 = document.querySelector(".box_question input:nth-child(8)").value
+    let answerWrong2 = document.querySelector(".box_question input:nth-child(10)").value
+    let answerWrong3 = document.querySelector(".box_question input:nth-child(12)").value
+    let ImageWrong1 = document.querySelector(".box_question input:nth-child(9)").value
+    let ImageWrong2 = document.querySelector(".box_question input:nth-child(11)").value
+    let ImageWrong3 = document.querySelector(".box_question input:nth-child(13)").value
+    let RegExp = /^#[0-9A-F]{6}$/i
+    if (questionTitle.length<20){
+        alert("Quantia de caracteres inválida, insira um valor maior do que 20")
+        return
+    }
+    if (!RegExp.test(colorQuestion)){
+        alert("Código precisa ser em hexadecimal!!")
+        return
+    }
+    if (answerCorrect === "" || answerWrong1 === ""){
+        alert("O campo da resposta não pode estar vazio")
+        return
+    }
+    try {
+        let url = new URL(imageCorrect)
+        let url1 = new URL(ImageWrong1)
+      } catch(err) {
+          alert("Insira uma URL válida")
+          return
+      }
+    if (answerWrong2 !== "" || ImageWrong2 !== ""){
+        try {
+            let url = new URL(ImageWrong2)
+          } catch(err) {
+              alert("Insira uma URL válida")
+              return
+          }
+    }
+    if (answerWrong3 !== "" || ImageWrong3 !== ""){
+        try {
+            let url = new URL(ImageWrong3)
+          } catch(err) {
+              alert("Insira uma URL válida")
+              return
+          }
+    }
+    document.querySelector('main .quiz_creation:nth-child(2)').classList.add('hidden')
+    document.querySelector('main .quiz_creation:nth-child(3)').classList.remove('hidden')
+}
+
+function validateLevels(){
+    let levelTitle = document.querySelector(".levels input:nth-child(2)").value
+    let minimumPercent = document.querySelector(".levels input:nth-child(4)").value
+    let imageLevel = document.querySelector(".levels input:nth-child(6)").value
+    let levelDescription = document.querySelector(".levels input:nth-child(8)").value
+}
+
 
 function isNumber(n) {
     return !isNaN(parseInt(n));
