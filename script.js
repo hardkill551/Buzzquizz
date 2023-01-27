@@ -33,23 +33,26 @@ function enterQuizz(divElement){
 
 function openQuiz(response){
     quizzList = response.data;
+    id = response.id;
+    id = quizzList[response.id]
     console.log(quizzList)
     finalizationQuiz(5)
     document.querySelector('.container').classList.add('hidden')
     document.querySelector('.openQuizz').classList.remove('hidden')
 
-   /* const template = document.querySelector('.openQuizz')
+    /*const template = document.querySelector('.openQuizz')
     template.innerHTML = ''
-    
-    for(let i = 0 ; i < quizzList.length ; i++){
 
         template.innerHTML +=
         `<div class="quizzPage">
-        <div class="gradient"></div> 
-        <img src="${quizzList[i].image}">
-        </div>`
+            <div class="topQuizzPage">
+                <div class="gradient-color"></div> 
+                <img src="${id.image}">
+                <h1>${id.title}</h1>
+            </div>
+        </div>`*/
 
-    }*/
+
 }
 
 function createQuizz(){

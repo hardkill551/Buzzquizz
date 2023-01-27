@@ -19,7 +19,7 @@ header{
     align-items: center;
     position: fixed;
     top: 0;
-    z-index: 1;
+    z-index: 3;
 }
 
 header h1{
@@ -176,12 +176,65 @@ header h1{
     line-height: 22px;
     color: #FFFFFF;
     position: absolute;
-    z-index: 3;
+    z-index: 2;
     bottom: 71px;
 }
 
+.firstQuestion{
+    margin-top: 42px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
+.title{
+    background-color: #434CA0;
+    width: 340px;
+    height: 89px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
+.title h1{
+    font-size: 19px;
+    line-height: 27px;
+    color: #FFFFFF;
+    font-weight: 700;
+    text-align: center;
+}
+
+.answers{
+    width: 340px;
+    margin-top: 13px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+}
+
+.answer img{
+    width: 163px;
+    height: 113px;
+}
+
+.answer h2{
+    font-size: 13px;
+    line-height: 15px;
+    font-weight: 700;
+}
+
+.secondQuestion{
+    margin-top: 46px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.secondQuestion .title{
+    background-color: #A0438D;
+}
 
 main h2:first-child{
     font-weight:700;
@@ -341,6 +394,23 @@ h3{
         height: 227px;
         object-fit: cover;
     }
+
+    .title{
+        width: 690px;
+        height: 138px;
+    }
+
+    .answers{
+        width: 690px;
+        display: flex;
+        flex-wrap: wrap;
+    }
+    
+    .answer img{
+        width: 332px;
+        height: 175px;
+    }
+
     main button {
         width: 370px;
     }
