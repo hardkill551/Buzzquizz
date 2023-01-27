@@ -46,18 +46,29 @@ function openQuiz(response){
         <h1>${response.data.title}</h1>
     </div>`
 
-    /*const template = document.querySelector('.openQuizz')
-    template.innerHTML = ''
+    for (let i = 0; i < questions.length; i++) {
+        topQuizz.innerHTML +=
+        ` <div class="firstQuestion">
 
-        template.innerHTML +=
-        `<div class="quizzPage">
-            <div class="topQuizzPage">
-                <div class="gradient-color"></div> 
-                <img src="${id.image}">
-                <h1>${id.title}</h1>
+        <div class="title">
+            <h1>${questions[i].title}</h1>
+        </div>
+        <div class="answers">
+        </div>`
+
+        color = document.querySelectorAll('.title')
+        color[i].style.background = `${questions[i].color}`
+
+        answers = document.querySelector('.answers')
+        for(let a = 0; a < questions[i].answers.length; a++){
+            answers[i].innerHTML += 
+            `<div class="answer">
+            <img src="${questions[i].answers[a].image}">
+            <h2>${questions[i].answers[a].text}</h2>
             </div>
-        </div>`*/
-
+            `
+        }
+    }
 
 }
 

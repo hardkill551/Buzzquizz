@@ -188,7 +188,6 @@ header h1{
 }
 
 .title{
-    background-color: #434CA0;
     width: 340px;
     height: 89px;
     display: flex;
@@ -222,18 +221,6 @@ header h1{
     font-size: 13px;
     line-height: 15px;
     font-weight: 700;
-}
-
-.secondQuestion{
-    margin-top: 46px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.secondQuestion .title{
-    background-color: #A0438D;
 }
 
 main h2:first-child{
