@@ -1,4 +1,5 @@
 let id = "";
+let quizzList="";
 getQuizzes();
 
 function getQuizzes() {
@@ -31,8 +32,9 @@ function enterQuizz(divElement){
 }
 
 function openQuiz(response){
-    let quizzList = response.data;
+    quizzList = response.data;
     console.log(quizzList)
+    finalizationQuiz(5)
     document.querySelector('.container').classList.add('hidden')
     document.querySelector('.openQuizz').classList.remove('hidden')
 
@@ -87,7 +89,33 @@ function isNumber(n) {
 
 
 
-// Gustavo Aqui
+// Gustavo Here
+function finalizationQuiz(answer){
+    let ranks = []
+    let title,text,image ="";
+    let rightAnswer = 1; // imaginary value that will be filled by the user's correct answers!!!
+    let questions = quizzList.questions;
+    if (questions.length <= answer){ // it was supposed to be == but I let it run in the test forever!!!
+        const percentual = (rightAnswer*100)/questions.length;
+        console.log(percentual) // shows the percentage of the user's success
+        ranks = quizzList.levels
+        for(let i=ranks.length-1;0<=i;i--){ //descending loop to store "level" values ​​of the clicked quiz
+            console.log("Entrou no for")
+            if (percentual >= ranks[i].minValue){
+                console.log("Entrou no if")
+                console.log(i)
+                title = ranks[i].title;
+                text = ranks[i].text;
+                image = ranks[i].image;
+                break
+           }
+           
+        }
+        console.log(ranks) //shows the levels in percentage of success ex: 10,40,80
+        console.log(`${Math.round(percentual)}% de acerto: ${title}`)
+        console.log(image)
+        console.log(text);
+    }
+}
 
-
-// Gustavo Aqui
+// Gustavo Here
