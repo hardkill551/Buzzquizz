@@ -117,8 +117,18 @@ header h1{
     flex-direction: column;
     justify-content: center;
 }
+.downQuizzes{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
 
 .quizzes img{
+    width: 340px;
+    height: 181px;
+    border-radius: 5px;
+}
+.downQuizzes img{
     width: 340px;
     height: 181px;
     border-radius: 5px;
@@ -141,6 +151,16 @@ header h1{
 }
 
 .quizzes h2{
+    font-size: 19px;
+    line-height: 22px;
+    color: #FFFFFF;
+    position: absolute;
+    bottom: 7px;
+    margin-left: 18px;
+    z-index: 3;
+    width: 322px;
+}
+.downQuizzes h2{
     font-size: 19px;
     line-height: 22px;
     color: #FFFFFF;
@@ -374,6 +394,12 @@ textarea{
         width: 1051px;
     }
     .quizzes{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+    .downQuizzes{
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
