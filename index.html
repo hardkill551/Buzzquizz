@@ -18,7 +18,7 @@
             <h1>BuzzQuizz</h1>
         </header>
 
-        <div class="container ">
+        <div class="container hidden">
             <div class="createQuizz">
                 <p>Você não criou nenhum <br /> quizz ainda :(</p>
                 <button onclick="createQuizz()">Criar Quizz</button>
@@ -36,12 +36,9 @@
         </div>
 
         <div class="openQuizz hidden">
+            
             <div class="quizzPage">
-                <div class="topQuizzPage">
-                    <div class="gradient-color"></div> 
-                    <img src="images/O quão potterhead é você.png">
-                    <h1>O quão Potterhead é você?</h1>
-                </div>
+        
             </div>
         </div>
         
@@ -50,10 +47,10 @@
             <section class="quiz_creation hidden">
                 <h2>Comece pelo começo</h2>
                     <ul class="questions">
-                        <input type="text" placeholder="Título do seu quizz"><br>
-                        <input type="text" placeholder="URL da imagem do seu quizz"><br>
-                        <input type="text" placeholder="Quantidade de perguntas do quizz"><br>
-                        <input type="text" placeholder="Quantidade de níveis do quizz">
+                        <textarea type="text" placeholder="Título do seu quizz"></textarea><br>
+                        <textarea type="text" placeholder="URL da imagem do seu quizz"></textarea><br>
+                        <textarea type="text" placeholder="Quantidade de perguntas do quizz"></textarea><br>
+                        <textarea type="text" placeholder="Quantidade de níveis do quizz"></textarea>
                     </ul>
                 <button onclick="validateTitle()">Prosseguir pra criar perguntas</button>
             </section>
@@ -61,56 +58,38 @@
                 <h2>Crie suas perguntas</h2>
                 <ul class="box_question">
                     <h3>Pergunta 1</h3>
-                    <input type="text" placeholder="Texto da pergunta">
-                    <input type="text" class="margin-questions" placeholder="Cor de fundo da pergunta">
+                    <textarea type="text" placeholder="Texto da pergunta"></textarea>
+                    <textarea type="text" class="margin-questions" placeholder="Cor de fundo da pergunta"></textarea>
                     <h3>Resposta correta</h3>
-                    <input type="text" placeholder="Resposta correta">
-                    <input type="text" class="margin-questions"placeholder="URL da imagem">
+                    <textarea type="text" placeholder="Resposta correta"></textarea>
+                    <textarea type="text" class="margin-questions"placeholder="URL da imagem"></textarea>
                     <h3>Respostas incorretas</h3>
-                    <input type="text" placeholder="Resposta incorreta 1">
-                    <input type="text" class="margin-questions"placeholder="URL da imagem 1">
-                    <input type="text" placeholder="Resposta incorreta 2">
-                    <input type="text" class="margin-questions" placeholder="URL da imagem 2">
-                    <input type="text" placeholder="Resposta incorreta 3">
-                    <input type="text" class="margin-questions" placeholder="URL da imagem 3">
+                    <textarea type="text" placeholder="Resposta incorreta 1"></textarea>
+                    <textarea type="text" class="margin-questions"placeholder="URL da imagem 1"></textarea>
+                    <textarea type="text" placeholder="Resposta incorreta 2"></textarea>
+                    <textarea type="text" class="margin-questions" placeholder="URL da imagem 2"></textarea>
+                    <textarea type="text" placeholder="Resposta incorreta 3"></textarea>
+                    <textarea type="text" class="margin-questions" placeholder="URL da imagem 3"></textarea>
                 </ul>
-                <ul class="other_question">
-                    <h3>Pergunta 2</h3>
-                    <img src="images/Vector.png" alt="">
-                </ul>
-                <ul class="other_question">
-                    <h3>Pergunta 3</h3>
-                    <img src="images/Vector.png" alt="">
-                </ul>
-            <button>Prosseguir pra criar níveis</button>
             </section>
             <section class="quiz_creation hidden">
                 <h2>Agora, decida os níveis</h2>
                     <ul class="levels">
                         <h3>Nível 1</h3>
-                        <input type="text" placeholder="Título do seu nível"><br>
-                        <input type="text" placeholder="% de acerto mínima"><br>
-                        <input type="text" placeholder="URL da imagem do nível"><br>
-                        <input type="text" placeholder="Descrição do nível">
+                        <textarea type="text" placeholder="Título do seu nível"></textarea><br>
+                        <textarea type="text" placeholder="% de acerto mínima"></textarea><br>
+                        <textarea type="text" placeholder="URL da imagem do nível"></textarea><br>
+                        <textarea type="text" placeholder="Descrição do nível"></textarea>
                     </ul>
-                    <ul class="other_question">
-                        <h3>Nível 2</h3>
-                        <img src="images/Vector.png" alt="">
-                    </ul>
-                    <ul class="other_question">
-                        <h3>Nível 3</h3>
-                        <img src="images/Vector.png" alt="">
-                    </ul>
-                <button class="button_finish">Finalizar quiz</button>
             </section>
-            <section class="quiz_creation hidden">
+            <section class="quiz_creation">
                 <h2>Seu quizz está pronto!</h2>
-                <div class="img_potterhead">
+                <div onclick="forTheQuizz()"class="img_potterhead">
                     <img src="images/O quão potterhead é você.png" alt="">
                     <p>O quão Potterhead é você?</p>
                 </div>
-                <button class="button_acess">Acessar quiz</button>
-                <button class="button_home">Voltar para home</button>
+                <button onclick="forTheQuizz()" class="button_acess">Acessar quiz</button>
+                <button onclick="forTheHome()"class="button_home">Voltar para home</button>
             </section>
         </main>
 

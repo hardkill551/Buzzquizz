@@ -19,7 +19,8 @@ header{
     align-items: center;
     position: fixed;
     top: 0;
-    z-index: 1;
+    z-index: 4;
+
 }
 
 header h1{
@@ -176,34 +177,59 @@ header h1{
     line-height: 22px;
     color: #FFFFFF;
     position: absolute;
-    z-index: 3;
+    z-index: 2;
     bottom: 71px;
 }
 
+.firstQuestion{
+    margin-top: 42px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
+.title{
+    width: 340px;
+    height: 89px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
+.title h1{
+    font-size: 19px;
+    line-height: 27px;
+    color: #FFFFFF;
+    font-weight: 700;
+    text-align: center;
+}
+
+.answer{
+    width: 340px;
+    margin-top: 13px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+}
+
+.answer img{
+    width: 163px;
+    height: 113px;
+}
+
+.answer h2{
+    font-size: 13px;
+    line-height: 15px;
+    font-weight: 700;
+}
 
 main h2:first-child{
     font-weight:700;
     font-size: 20px;
     margin-bottom: 27px;
 }
-input{
-    width: 100%;
-    height: 46px;
-    border: 1px solid #D1D1D1;
-    border-radius: 5px;
-    padding-left: 20px; 
-    font-weight: 400;
-    font-size: 19px;
-    outline: 0;
-}
-input::placeholder{
-    font-weight: 400;
-    font-size: 19px;
-    color: #BABABA;
-    font-style: italic;
-}
+
 main button{
     width: 324px;
     height: 54px;
@@ -265,7 +291,7 @@ h3{
 .levels{
     background-color: #FFFFFF;
     width: 375px;
-    height: 316px;
+    height: 439px;
     display: flex;
     flex-direction: column;
     padding: 20px;
@@ -302,6 +328,29 @@ h3{
     font-weight: 400;
     bottom:23px;
     left: 23px;
+}
+
+textarea::placeholder{
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 19px;
+    color: #BABABA;
+    font-style: italic;
+}
+textarea{
+    width: 100%;
+    height: 46px;
+    border: 1px solid #D1D1D1;
+    border-radius: 5px;
+    padding: 12px 20px;
+    font-weight: 400;
+    font-size: 19px;
+    outline: 0;
+    resize: none;
+    overflow:hidden;
+}
+.levels textarea:nth-child(8){
+    height: 177px;
 }
 .hidden{
     display: none;
@@ -341,6 +390,23 @@ h3{
         height: 227px;
         object-fit: cover;
     }
+
+    .title{
+        width: 690px;
+        height: 138px;
+    }
+
+    .answer{
+        width: 690px;
+        display: flex;
+        flex-wrap: wrap;
+    }
+    
+    .answer img{
+        width: 332px;
+        height: 175px;
+    }
+
     main button {
         width: 370px;
     }
@@ -355,6 +421,7 @@ h3{
     }
     .levels{
         width: 600px;
+        height: 316px;
     }
     main h2:first-child{
         font-size: 23px;
@@ -364,6 +431,10 @@ h3{
     }
     .quiz_creation{
         margin-top: 140px;
+    }
+    textarea{
+        height: 46px;
+        padding: center;
     }
     .hidden{
         display: none;
