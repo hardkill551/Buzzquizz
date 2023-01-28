@@ -2,10 +2,10 @@ let id = "";
 let quizzList="";
 getQuizzes();
 let createQuiz = {}
-let pergunta = []
+let questionsAll = []
 let amountQuestions;
 let amountLevels;
-let contador = 1
+let count = 1
 
 function getQuizzes() {
     const promise = axios.get("https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes")
@@ -129,9 +129,9 @@ function validateTitle(){
     </ul>`
     }
     document.querySelector("main .quiz_creation:nth-child(2)").innerHTML += `
-    <button>Prosseguir pra criar níveis</button>`
+    <button onclick="validate()">Prosseguir pra criar níveis</button>`
     document.querySelector("main .quiz_creation:nth-child(3)").innerHTML += `
-    <button class="button_finish">Finalizar quiz</button>`
+    <button onclick="validateLv()" class="button_finish">Finalizar quiz</button>`
     document.querySelector('.quiz_creation').classList.add('hidden')
     document.querySelector('main .quiz_creation:nth-child(2)').classList.remove('hidden')
 }
@@ -181,16 +181,16 @@ function validateQuestion(){
     if (answerWrong3!==""){
         ct++
     }
-    let aeba = []
+    let answersAll = []
 if (ct==1){
-        aeba = {
+        answersAll = {
             text: answerWrong1,
             image: ImageWrong1,
             isCorrectAnswer:false
         }
     }
 if (ct==2){
-    aeba = [{
+    answersAll = [{
         text: answerWrong1,
         image: ImageWrong1,
         isCorrectAnswer:false
@@ -202,7 +202,7 @@ if (ct==2){
         }]
 }
 if (ct==3){
-    aeba = [{
+    answersAll = [{
         text: answerWrong1,
         image: ImageWrong1,
         isCorrectAnswer:false
@@ -218,7 +218,7 @@ if (ct==3){
             isCorrectAnswer:false
         }]
     }
-    pergunta = [
+    questionsAll = [
 		{
 			title: questionTitle,
 			color: colorQuestion,
@@ -228,16 +228,19 @@ if (ct==3){
 					image: imageCorrect,
 					isCorrectAnswer: true
 				},
-                aeba
+                answersAll
 			]
 		},
 	]
-    createQuiz.questions.push(pergunta)
-    contador++
-    document.querySelector(".box_question h3").innerHTML = `<h3>Pergunta ${contador}</h3>`
+    createQuiz.questions.push(questionsAll)
+    count++
+    document.querySelector(".box_question h3").innerHTML = `<h3>Pergunta ${count}</h3>`
     let node = document.querySelector("main .quiz_creation:nth-child(2) ul:nth-child(3)");
-    if (node.parentNode) {
+    try {
       node.parentNode.removeChild(node);
+    }
+    catch(err){
+        return
     }
     document.querySelector(".box_question textarea:nth-child(2)").value = "" 
     document.querySelector(".box_question textarea:nth-child(3)").value = ""
@@ -250,12 +253,20 @@ if (ct==3){
     document.querySelector(".box_question textarea:nth-child(11)").value = ""
     document.querySelector(".box_question textarea:nth-child(13)").value = ""
     window.scrollTo(0, 0)
-    console.log(createQuiz)
-    
-    /*document.querySelector('main .quiz_creation:nth-child(2)').classList.add('hidden')
-    document.querySelector('main .quiz_creation:nth-child(3)').classList.remove('hidden')*/
 }
 
+function validate(){
+    if (createQuiz.questions.length==amountQuestions-1){
+        validateQuestion()
+    }
+    if (createQuiz.questions.length==amountQuestions){
+        document.querySelector('main .quiz_creation:nth-child(2)').classList.add('hidden')
+        document.querySelector('main .quiz_creation:nth-child(3)').classList.remove('hidden')
+    }
+    else{
+        alert("Você precisar preencher todas perguntas")
+    }
+}
 
 function validateLevels(){
     let levelTitle = document.querySelector(".levels textarea:nth-child(2)").value
@@ -277,8 +288,45 @@ function validateLevels(){
         alert("Quantia de caracteres inválida, insira um valor maior do que 30")
         return
     }
-    document.querySelector('main .quiz_creation:nth-child(3)').classList.add('hidden')
-    document.querySelector('main .quiz_creation:nth-child(4)').classList.remove('hidden')
+    leveis = {
+        title: levelTitle,
+        image: imageLevel,
+        text: levelDescription,
+        minValue: minimumPercent
+    }
+    createQuiz.levels.push(leveis)
+    count = 1
+    count++
+    document.querySelector(".levels h3").innerHTML = `<h3>Nível ${count}</h3>`
+    let node = document.querySelector("main .quiz_creation:nth-child(3) ul:nth-child(3)");
+    try {
+      node.parentNode.removeChild(node);
+    }
+    catch(err){
+        return
+    }
+    document.querySelector(".levels textarea:nth-child(2)").value = ""
+    document.querySelector(".levels textarea:nth-child(4)").value = ""
+    document.querySelector(".levels textarea:nth-child(6)").value = ""
+    document.querySelector(".levels textarea:nth-child(8)").value = ""
+    window.scrollTo(0, 0)
+}
+
+function validateLv(){
+    if (createQuiz.levels.length==amountLevels-1){
+        validateLevels()
+    }
+    if (createQuiz.levels.length==amountLevels){
+        document.querySelector('main .quiz_creation:nth-child(3)').classList.add('hidden')
+        document.querySelector('main .quiz_creation:nth-child(4)').classList.remove('hidden')
+    }
+    else{
+        alert("Você precisar preencher todos os níveis")
+    }
+    console.log(createQuiz)
+    for (let i = 0;i<createQuiz.levels.length;i++){
+    console.log(createQuiz.levels.minValue[i])
+    }
 }
 
 
