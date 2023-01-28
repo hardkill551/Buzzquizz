@@ -224,6 +224,22 @@ header h1{
     font-weight: 700;
 }
 
+.opacity{
+    opacity: 0.3;
+}
+
+.certo{
+    color: green;
+}
+
+.errado{
+    color: red;
+}
+
+.disabled{
+    pointer-events: none;
+}
+
 main h2:first-child{
     font-weight:700;
     font-size: 20px;
