@@ -78,7 +78,7 @@ function openQuiz(response){
             `
         }
     }
-
+}
 function shuffle() { 
     return Math.random() - 0.5; 
 }
@@ -180,7 +180,6 @@ function validateQuestion(){
     }
     if (answerWrong3!==""){
         ct++
-        console.log(ct)
     }
     let aeba = []
 if (ct==1){
@@ -252,7 +251,9 @@ if (ct==3){
     document.querySelector(".box_question textarea:nth-child(13)").value = ""
     window.scrollTo(0, 0)
     console.log(createQuiz)
-
+    
+    /*document.querySelector('main .quiz_creation:nth-child(2)').classList.add('hidden')
+    document.querySelector('main .quiz_creation:nth-child(3)').classList.remove('hidden')*/
 }
 
 
@@ -326,5 +327,4 @@ function finalizationQuiz(answer){
         console.log(image)
         console.log(text);
     }
-}
 }
