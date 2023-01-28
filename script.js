@@ -34,7 +34,7 @@ function enterQuizz(divElement){
 function openQuiz(response){
     quizzList = response.data;
     console.log(quizzList)
-    finalizationQuiz(5)
+    
     document.querySelector('.container').classList.add('hidden')
     document.querySelector('.openQuizz').classList.remove('hidden')
 
