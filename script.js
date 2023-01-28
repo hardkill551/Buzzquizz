@@ -190,7 +190,7 @@ if (ct==1){
         }
     }
 if (ct==2){
-    answersAll = [{
+    answersAll = {
         text: answerWrong1,
         image: ImageWrong1,
         isCorrectAnswer:false
@@ -199,10 +199,10 @@ if (ct==2){
             text: answerWrong2,
             image: ImageWrong2,
             isCorrectAnswer:false
-        }]
+        }
 }
 if (ct==3){
-    answersAll = [{
+    answersAll = {
         text: answerWrong1,
         image: ImageWrong1,
         isCorrectAnswer:false
@@ -216,9 +216,9 @@ if (ct==3){
             text: answerWrong3,
             image: ImageWrong3,
             isCorrectAnswer:false
-        }]
+        }
     }
-    questionsAll = [
+    questionsAll = 
 		{
 			title: questionTitle,
 			color: colorQuestion,
@@ -231,7 +231,7 @@ if (ct==3){
                 answersAll
 			]
 		},
-	]
+	
     createQuiz.questions.push(questionsAll)
     count++
     document.querySelector(".box_question h3").innerHTML = `<h3>Pergunta ${count}</h3>`
@@ -313,23 +313,51 @@ function validateLevels(){
 }
 
 function validateLv(){
+    for (let i = 0;i<createQuiz.levels.length;i++){
+        if (createQuiz.levels[i].minValue == 0 || document.querySelector(".levels textarea:nth-child(4)").value == 0){
+            break
+        }
+        else{
+            alert("Você precisa de pelo menos um level com 0%")
+            return
+        }
+        }
     if (createQuiz.levels.length==amountLevels-1){
         validateLevels()
     }
+    console.log(createQuiz)
     if (createQuiz.levels.length==amountLevels){
-        document.querySelector('main .quiz_creation:nth-child(3)').classList.add('hidden')
-        document.querySelector('main .quiz_creation:nth-child(4)').classList.remove('hidden')
+        saveQuiz()
     }
     else{
         alert("Você precisar preencher todos os níveis")
     }
-    console.log(createQuiz)
-    for (let i = 0;i<createQuiz.levels.length;i++){
-    console.log(createQuiz.levels.minValue[i])
-    }
 }
 
+function saveQuiz(){
+    let promise = axios.post("https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes", createQuiz)
+    promise.then(funcionou)
+    promise.catch(naofuncionou)
+}
 
+function funcionou(){
+    document.querySelector('main .quiz_creation:nth-child(3)').classList.add('hidden')
+    document.querySelector('main .quiz_creation:nth-child(4)').classList.remove('hidden')
+}
+
+function naofuncionou(){
+    alert("Não foi salvo")
+    return
+}
+
+function forTheQuiz(){
+    
+}
+
+function forTheHome(){
+    document.querySelector('main .quiz_creation:nth-child(4)').classList.add('hidden')
+    document.querySelector('.container').classList.remove('hidden')
+}
 
 function isURL(n){
     try {
