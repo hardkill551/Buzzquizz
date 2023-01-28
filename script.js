@@ -38,26 +38,49 @@ function enterQuizz(divElement){
 
 function openQuiz(response){
     quizzList = response.data;
-    id = response.id;
-    id = quizzList[response.id]
-    console.log(quizzList)
-    finalizationQuiz(5)
+    levels = response.data.levels;
+    questions = response.data.questions;
+    finalizationQuiz(5);
     document.querySelector('.container').classList.add('hidden')
     document.querySelector('.openQuizz').classList.remove('hidden')
 
-    /*const template = document.querySelector('.openQuizz')
-    template.innerHTML = ''
+    topQuizz = document.querySelector('.quizzPage');
+    topQuizz.innerHTML = `<div class="topQuizzPage">
+        <div class="gradient-color"></div> 
+        <img src="${response.data.image}">
+        <h1>${response.data.title}</h1>
+    </div>`
 
-        template.innerHTML +=
-        `<div class="quizzPage">
-            <div class="topQuizzPage">
-                <div class="gradient-color"></div> 
-                <img src="${id.image}">
-                <h1>${id.title}</h1>
+    for (let i = 0; i < questions.length; i++) {
+        questions[i].answers.sort(shuffle);
+        topQuizz.innerHTML +=
+        ` <div class="firstQuestion">
+
+        <div class="title">
+            <h1>${questions[i].title}</h1>
+        </div>
+        <div class="answer">
+        </div>`
+
+        color = document.querySelectorAll('.title')
+        color[i].style.background = `${questions[i].color}`
+
+        answers = document.querySelectorAll('.answer');
+
+        for(let a = 0; a < questions[i].answers.length; a++){
+            answers[i].innerHTML += 
+            `
+            <div class="answers">
+            <img src="${questions[i].answers[a].image}">
+            <h2>${questions[i].answers[a].text}</h2>
             </div>
-        </div>`*/
+            
+            `
+        }
+    }
 
-
+function shuffle() { 
+    return Math.random() - 0.5; 
 }
 
 function createQuizz(){
@@ -304,5 +327,4 @@ function finalizationQuiz(answer){
         console.log(text);
     }
 }
-
-// Gustavo Here
+}
