@@ -6,7 +6,8 @@ let questionsAll = []
 let amountQuestions;
 let amountLevels;
 let count = 1
-
+let questions;
+let quizzId;
 function getQuizzes() {
     const promise = axios.get("https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes")
     promise.then(ShowQuizzes);
@@ -31,6 +32,7 @@ function ShowQuizzes(response){
 }
 
 function enterQuizz(divElement){
+    window.scrollTo(0,0);
     id=divElement.querySelector('.idQuiz').innerHTML
     const promise = axios.get(`https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes/${id}`)
     promise.then(openQuiz);
@@ -40,6 +42,7 @@ function openQuiz(response){
     quizzList = response.data;
     levels = response.data.levels;
     questions = response.data.questions;
+    
     finalizationQuiz(5);
     document.querySelector('.container').classList.add('hidden')
     document.querySelector('.openQuizz').classList.remove('hidden')
@@ -59,7 +62,7 @@ function openQuiz(response){
         <div class="title">
             <h1>${questions[i].title}</h1>
         </div>
-        <div class="answer">
+        <div class="answer scroll">
         </div>`
 
         color = document.querySelectorAll('.title')
@@ -68,20 +71,71 @@ function openQuiz(response){
         answers = document.querySelectorAll('.answer');
 
         for(let a = 0; a < questions[i].answers.length; a++){
+            
+            if(questions[i].answers[a].isCorrectAnswer == true){
             answers[i].innerHTML += 
             `
-            <div class="answers">
+            <div class="true answers" onclick="answerQuestions(this)">
             <img src="${questions[i].answers[a].image}">
             <h2>${questions[i].answers[a].text}</h2>
             </div>
             
             `
-        }
+            } else {
+                answers[i].innerHTML += 
+                `
+                <div class="false answers" onclick="answerQuestions(this)">
+                <img src="${questions[i].answers[a].image}">
+                <h2>${questions[i].answers[a].text}</h2>
+                </div>
+                
+                `
+            }
+        } 
+        answers[i].innerHTML += `</div>`
     }
+
 }
+
+let c = 0;
+let i = 0;
+
+function answerQuestions(element){
+    
+    let answer = document.querySelectorAll('.answers');
+    let d = 0;
+
+        while(d < questions[c].answers.length){
+            if(answer[i].classList.contains('true')){
+                answer[i].classList.add('certo')
+                answer[i].classList.add('opacity')
+                answer[i].classList.add('disabled')
+            } else {
+                answer[i].classList.add('opacity')
+                answer[i].classList.add('errado')
+                answer[i].classList.add('selected')
+                answer[i].classList.add('disabled')
+            }
+    
+            i++;
+            d++;
+        }
+
+    c++
+    element.classList.remove('opacity')
+    
+    
+    setTimeout(function scrollPage(){
+        const elementoQueQueroQueApareca = document.querySelector('.scroll');
+        elementoQueQueroQueApareca.scrollIntoView();
+        elementoQueQueroQueApareca.classList.remove('scroll')
+    }, 2000)
+}
+
 function shuffle() { 
     return Math.random() - 0.5; 
 }
+
 
 function createQuizz(){
     document.querySelector('.container').classList.add('hidden')
@@ -325,7 +379,6 @@ function validateLv(){
     if (createQuiz.levels.length==amountLevels-1){
         validateLevels()
     }
-    console.log(createQuiz)
     if (createQuiz.levels.length==amountLevels){
         saveQuiz()
     }
@@ -340,9 +393,12 @@ function saveQuiz(){
     promise.catch(naofuncionou)
 }
 
-function funcionou(){
+function funcionou(response){
     document.querySelector('main .quiz_creation:nth-child(3)').classList.add('hidden')
     document.querySelector('main .quiz_creation:nth-child(4)').classList.remove('hidden')
+    //console.log(response)
+    quizzId=response.data.id
+    localStorageQuizz(response.data);
 }
 
 function naofuncionou(){
@@ -350,8 +406,10 @@ function naofuncionou(){
     return
 }
 
-function forTheQuiz(){
-    
+function forTheQuizz(){
+    const promise = axios.get(`https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes/${quizzId}`)
+    promise.then(openQuiz);
+    document.querySelector('main .quiz_creation:nth-child(4)').classList.add('hidden')
 }
 
 function forTheHome(){
@@ -384,13 +442,13 @@ function finalizationQuiz(answer){
     let questions = quizzList.questions;
     if (questions.length <= answer){ // it was supposed to be == but I let it run in the test forever!!!
         const percentual = (rightAnswer*100)/questions.length;
-        console.log(percentual) // shows the percentage of the user's success
+        //console.log(percentual) // shows the percentage of the user's success
         ranks = quizzList.levels
         for(let i=ranks.length-1;0<=i;i--){ //descending loop to store "level" values ​​of the clicked quiz
-            console.log("Entrou no for")
+            //console.log("Entrou no for")
             if (percentual >= ranks[i].minValue){
-                console.log("Entrou no if")
-                console.log(i)
+                //console.log("Entrou no if")
+                //console.log(i)
                 title = ranks[i].title;
                 text = ranks[i].text;
                 image = ranks[i].image;
@@ -398,9 +456,27 @@ function finalizationQuiz(answer){
            }
            
         }
-        console.log(ranks) //shows the levels in percentage of success ex: 10,40,80
-        console.log(`${Math.round(percentual)}% de acerto: ${title}`)
-        console.log(image)
-        console.log(text);
+        //console.log(ranks) //shows the levels in percentage of success ex: 10,40,80
+        //console.log(`${Math.round(percentual)}% de acerto: ${title}`)
+        //console.log(image);
+        //console.log(text);
     }
 }
+localStorageList = [];
+function localStorageQuizz(v){
+    // Pega a lista do quizz coloca em uma lista maior, transforma ela em string e armazena no localStorage="local"
+    localStorageList.push(v)
+    console.log(v)
+    console.log(localStorageList)
+    const stringLocalStorageList = JSON.stringify(localStorageList)
+    console.log(stringLocalStorageList)
+    localStorage.setItem("local",stringLocalStorageList); 
+    // Pega a variavel no formato string dentro do localStorage e transforma ela em Array novamente
+    console.log(localStorage.getItem("local"))
+    const getString = localStorage.getItem("local")
+    console.log(getString)
+    const transformArray = JSON.parse(getString)
+    console.log(transformArray)
+}
+
+    
