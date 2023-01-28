@@ -6,8 +6,8 @@ let questionsAll = []
 let amountQuestions;
 let amountLevels;
 let count = 1
+let questions;
 let quizzId;
-
 function getQuizzes() {
     const promise = axios.get("https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes")
     promise.then(ShowQuizzes);
@@ -32,6 +32,7 @@ function ShowQuizzes(response){
 }
 
 function enterQuizz(divElement){
+    window.scrollTo(0,0);
     id=divElement.querySelector('.idQuiz').innerHTML
     const promise = axios.get(`https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes/${id}`)
     promise.then(openQuiz);
@@ -41,6 +42,7 @@ function openQuiz(response){
     quizzList = response.data;
     levels = response.data.levels;
     questions = response.data.questions;
+    
     finalizationQuiz(5);
     document.querySelector('.container').classList.add('hidden')
     document.querySelector('.openQuizz').classList.remove('hidden')
@@ -60,7 +62,7 @@ function openQuiz(response){
         <div class="title">
             <h1>${questions[i].title}</h1>
         </div>
-        <div class="answer">
+        <div class="answer scroll">
         </div>`
 
         color = document.querySelectorAll('.title')
@@ -69,20 +71,71 @@ function openQuiz(response){
         answers = document.querySelectorAll('.answer');
 
         for(let a = 0; a < questions[i].answers.length; a++){
+            
+            if(questions[i].answers[a].isCorrectAnswer == true){
             answers[i].innerHTML += 
             `
-            <div class="answers">
+            <div class="true answers" onclick="answerQuestions(this)">
             <img src="${questions[i].answers[a].image}">
             <h2>${questions[i].answers[a].text}</h2>
             </div>
             
             `
-        }
+            } else {
+                answers[i].innerHTML += 
+                `
+                <div class="false answers" onclick="answerQuestions(this)">
+                <img src="${questions[i].answers[a].image}">
+                <h2>${questions[i].answers[a].text}</h2>
+                </div>
+                
+                `
+            }
+        } 
+        answers[i].innerHTML += `</div>`
     }
+
 }
+
+let c = 0;
+let i = 0;
+
+function answerQuestions(element){
+    
+    let answer = document.querySelectorAll('.answers');
+    let d = 0;
+
+        while(d < questions[c].answers.length){
+            if(answer[i].classList.contains('true')){
+                answer[i].classList.add('certo')
+                answer[i].classList.add('opacity')
+                answer[i].classList.add('disabled')
+            } else {
+                answer[i].classList.add('opacity')
+                answer[i].classList.add('errado')
+                answer[i].classList.add('selected')
+                answer[i].classList.add('disabled')
+            }
+    
+            i++;
+            d++;
+        }
+
+    c++
+    element.classList.remove('opacity')
+    
+    
+    setTimeout(function scrollPage(){
+        const elementoQueQueroQueApareca = document.querySelector('.scroll');
+        elementoQueQueroQueApareca.scrollIntoView();
+        elementoQueQueroQueApareca.classList.remove('scroll')
+    }, 2000)
+}
+
 function shuffle() { 
     return Math.random() - 0.5; 
 }
+
 
 function createQuizz(){
     document.querySelector('.container').classList.add('hidden')
@@ -405,7 +458,7 @@ function finalizationQuiz(answer){
         }
         //console.log(ranks) //shows the levels in percentage of success ex: 10,40,80
         //console.log(`${Math.round(percentual)}% de acerto: ${title}`)
-       //console.log(image)
+        //console.log(image);
         //console.log(text);
     }
 }
