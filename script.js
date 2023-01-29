@@ -11,7 +11,10 @@ let quizzId;
 let quizzResponse;
 let localStorageList = [];
 let getString;
-
+let contRight=0;
+let title,text,image ="";
+let percentual;
+let save;
 
 
 localStorageQuizz(1)
@@ -41,10 +44,18 @@ function ShowQuizzes(response){
 }
 
 function enterQuizz(divElement){
+    save=divElement
     window.scrollTo(0,0);
     id=divElement.querySelector('.idQuiz').innerHTML
     const promise = axios.get(`https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes/${id}`)
     promise.then(openQuiz);
+}
+function restartQuiz(){
+    c=0
+    i=0
+    contRight=0
+    enterQuizz(save);
+    setTimeout(window.scrollTo(0, 0),2000)
 }
 
 function openQuiz(response){
@@ -52,7 +63,8 @@ function openQuiz(response){
     levels = response.data.levels;
     questions = response.data.questions;
     
-    finalizationQuiz(5);
+    
+    
     document.querySelector('.container').classList.add('hidden')
     document.querySelector('.openQuizz').classList.remove('hidden')
 
@@ -103,17 +115,13 @@ function openQuiz(response){
         } 
         answers[i].innerHTML += `</div>`
     }
-
 }
-
 let c = 0;
 let i = 0;
-
 function answerQuestions(element){
     
     let answer = document.querySelectorAll('.answers');
     let d = 0;
-
         while(d < questions[c].answers.length){
             if(answer[i].classList.contains('true')){
                 answer[i].classList.add('certo')
@@ -132,7 +140,29 @@ function answerQuestions(element){
 
     c++
     element.classList.remove('opacity')
-    
+    if (element.classList.contains('true')){
+        contRight+=1
+    }
+    if (c == questions.length){
+        finalizationQuiz(contRight);
+        answers[answers.length-1].innerHTML += 
+    `<div class="last"> 
+        <div class="branca">
+            <div class="lastTop">
+                <h1>${Math.round(percentual)}% de acerto: ${title} </h1> 
+            </div>
+            <div class="imgep">
+                <img src="${image}" alt="Imagem do quiz">
+                <p> ${text}</p>
+            </div>
+        </div>
+        <div class="botoes">
+            <button onclick="restartQuiz()" class="restart">Reiniciar Quizz</button>
+            <button onclick="forTheHome()"class="home">Voltar para home</button>
+        </div>
+    </div>`
+    }
+   
     
     setTimeout(function scrollPage(){
         const elementoQueQueroQueApareca = document.querySelector('.scroll');
@@ -246,6 +276,7 @@ function validateQuestion(){
         }
     }
     let ct = 1
+    console.log(answerWrong2)
     if (answerWrong2!==""){
         ct++
     }
@@ -451,7 +482,6 @@ function saveQuiz(){
 }
 
 function funcionou(response){
-    //console.log(response)
     quizzId=response.data.id
     quizzResponse = response.data
     localStorageQuizz(quizzResponse)
@@ -490,20 +520,13 @@ function isNumber(n) {
 
 
 // Gustavo Here
-function finalizationQuiz(answer){
+function finalizationQuiz(rightAnswer){
     let ranks = []
-    let title,text,image ="";
-    let rightAnswer = 1; // imaginary value that will be filled by the user's correct answers!!!
     let questions = quizzList.questions;
-    if (questions.length <= answer){ // it was supposed to be == but I let it run in the test forever!!!
-        const percentual = (rightAnswer*100)/questions.length;
-        //console.log(percentual) // shows the percentage of the user's success
+        percentual = (rightAnswer*100)/questions.length;
         ranks = quizzList.levels
         for(let i=ranks.length-1;0<=i;i--){ //descending loop to store "level" values ​​of the clicked quiz
-            //console.log("Entrou no for")
             if (percentual >= ranks[i].minValue){
-                //console.log("Entrou no if")
-                //console.log(i)
                 title = ranks[i].title;
                 text = ranks[i].text;
                 image = ranks[i].image;
@@ -511,18 +534,14 @@ function finalizationQuiz(answer){
            }
            
         }
-        //console.log(ranks) //shows the levels in percentage of success ex: 10,40,80
-        //console.log(`${Math.round(percentual)}% de acerto: ${title}`)
-        //console.log(image);
-        //console.log(text);
-    }
+        
+        
+    
 }
 function localStorageQuizz(v){
-    console.log(v)
     if (v!==1){
     // Pega a lista do quizz coloca em uma lista maior, transforma ela em string e armazena no localStorage="local"
     const stringLocalStorageList = JSON.stringify(v)
-    console.log(stringLocalStorageList)
     localStorage.setItem(quizzId,stringLocalStorageList); 
     }
     // Pega a variavel no formato string dentro do localStorage e transforma ela em Array novamente
@@ -530,7 +549,6 @@ function localStorageQuizz(v){
     
     for(let i=0; i<keys.length; i++){
         getString = localStorage.getItem(keys[i])
-        console.log(getString)
         
         const transformArray = JSON.parse(getString)
         
