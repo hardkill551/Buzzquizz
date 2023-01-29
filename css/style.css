@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    
 }
 
 body{
@@ -11,7 +12,7 @@ body{
 
 header{
     background-color: #EC362D;
-    width: 100%;
+    width: 100vw;
     height: 69px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     display: flex;
@@ -20,7 +21,7 @@ header{
     position: fixed;
     top: 0;
     z-index: 4;
-
+    overflow-x: hidden;
 }
 
 header h1{
@@ -36,6 +37,7 @@ header h1{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    overflow-x: hidden;
 }
 
 .createQuizz{

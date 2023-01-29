@@ -8,6 +8,15 @@ let amountLevels;
 let count = 1
 let questions;
 let quizzId;
+let quizzResponse;
+let localStorageList = [];
+let getString;
+
+
+
+localStorageQuizz(1)
+
+
 function getQuizzes() {
     const promise = axios.get("https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes")
     promise.then(ShowQuizzes);
@@ -380,6 +389,8 @@ function validateLv(){
         validateLevels()
     }
     if (createQuiz.levels.length==amountLevels){
+        document.querySelector('main .quiz_creation:nth-child(3)').classList.add('hidden')
+        document.querySelector('main .quiz_creation:nth-child(4)').classList.remove('hidden')
         saveQuiz()
     }
     else{
@@ -388,17 +399,54 @@ function validateLv(){
 }
 
 function saveQuiz(){
+    count = 1
+    document.querySelector("main .quiz_creation:nth-child(2)").innerHTML = 
+    `<h2>Crie suas perguntas</h2>
+                <ul class="box_question">
+                    <h3>Pergunta 1</h3>
+                    <textarea type="text" placeholder="Texto da pergunta"></textarea>
+                    <textarea type="text" class="margin-questions" placeholder="Cor de fundo da pergunta"></textarea>
+                    <h3>Resposta correta</h3>
+                    <textarea type="text" placeholder="Resposta correta"></textarea>
+                    <textarea type="text" class="margin-questions"placeholder="URL da imagem"></textarea>
+                    <h3>Respostas incorretas</h3>
+                    <textarea type="text" placeholder="Resposta incorreta 1"></textarea>
+                    <textarea type="text" class="margin-questions"placeholder="URL da imagem 1"></textarea>
+                    <textarea type="text" placeholder="Resposta incorreta 2"></textarea>
+                    <textarea type="text" class="margin-questions" placeholder="URL da imagem 2"></textarea>
+                    <textarea type="text" placeholder="Resposta incorreta 3"></textarea>
+                    <textarea type="text" class="margin-questions" placeholder="URL da imagem 3"></textarea>
+                </ul>`
+
+    document.querySelector("main .quiz_creation:nth-child(3)").innerHTML =
+    `<h2>Agora, decida os níveis</h2>
+    <ul class="levels">
+        <h3>Nível 1</h3>
+        <textarea type="text" placeholder="Título do seu nível"></textarea><br>
+        <textarea type="text" placeholder="% de acerto mínima"></textarea><br>
+        <textarea type="text" placeholder="URL da imagem do nível"></textarea><br>
+        <textarea type="text" placeholder="Descrição do nível"></textarea>
+    </ul>`
+
+    document.querySelector("main .quiz_creation:nth-child(1)").innerHTML =                
+    `<h2>Comece pelo começo</h2>
+    <ul class="questions">
+        <textarea type="text" placeholder="Título do seu quizz"></textarea><br>
+        <textarea type="text" placeholder="URL da imagem do seu quizz"></textarea><br>
+        <textarea type="text" placeholder="Quantidade de perguntas do quizz"></textarea><br>
+        <textarea type="text" placeholder="Quantidade de níveis do quizz"></textarea>
+    </ul>
+    <button onclick="validateTitle()">Prosseguir pra criar perguntas</button>`
     let promise = axios.post("https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes", createQuiz)
     promise.then(funcionou)
     promise.catch(naofuncionou)
 }
 
 function funcionou(response){
-    document.querySelector('main .quiz_creation:nth-child(3)').classList.add('hidden')
-    document.querySelector('main .quiz_creation:nth-child(4)').classList.remove('hidden')
     //console.log(response)
     quizzId=response.data.id
-    localStorageQuizz(response.data);
+    quizzResponse = response.data
+    localStorageQuizz(quizzResponse)
 }
 
 function naofuncionou(){
@@ -462,8 +510,9 @@ function finalizationQuiz(answer){
         //console.log(text);
     }
 }
-localStorageList = [];
 function localStorageQuizz(v){
+    console.log(v)
+    if (v!==1){
     // Pega a lista do quizz coloca em uma lista maior, transforma ela em string e armazena no localStorage="local"
     localStorageList.push(v)
     console.log(v)
@@ -471,12 +520,35 @@ function localStorageQuizz(v){
     const stringLocalStorageList = JSON.stringify(localStorageList)
     console.log(stringLocalStorageList)
     localStorage.setItem("local",stringLocalStorageList); 
+    }
     // Pega a variavel no formato string dentro do localStorage e transforma ela em Array novamente
     console.log(localStorage.getItem("local"))
-    const getString = localStorage.getItem("local")
+    getString = localStorage.getItem("local")
     console.log(getString)
     const transformArray = JSON.parse(getString)
     console.log(transformArray)
+    if(getString.length!==0){
+    document.querySelector('.createQuizz').classList.add("hidden")
+    document.querySelector('.yourQuizzes').classList.remove("hidden")
+    ShowQuizzesOne(transformArray)
 }
-
+}
     
+function ShowQuizzesOne(response){
+    let quizList = response;
+    const quizzes = document.querySelector('.downQuizzes')
+    quizzes.innerHTML=' '
+    console.log(response)
+    console.log(quizList)
+    for(let i = 0 ; i < quizList.length ; i++){
+
+        quizzes.innerHTML +=
+        `<div class="quizz" onclick="enterQuizz(this)">
+            <span class="idQuiz hidden">${quizList[i].id}</span>
+            <h2>${quizList[i].title} </h2>
+            <img src="${quizList[i].image}">
+            <div class="gradient"></div> 
+        </div>`
+
+    }
+}
