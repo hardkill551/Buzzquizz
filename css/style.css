@@ -358,6 +358,7 @@ h3{
 }
 .img_potterhead img{
     width: 340px;
+    height: 181px;
 }
 .quiz_creation p{
     position: absolute;
@@ -396,6 +397,9 @@ textarea{
 
 
 @media (min-width: 1100px) {
+    .levels textarea:nth-child(8){
+        height: 46px;
+    }
 
     .createQuizz{
         width: 1051px;
@@ -471,7 +475,9 @@ textarea{
         font-size: 23px;
     }
     .img_potterhead img{
-        width: 375px;
+        width: 500px;
+        height: 266px;
+        
     }
     .quiz_creation{
         margin-top: 140px;

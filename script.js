@@ -184,6 +184,14 @@ function validateTitle(){
     <img src="images/Vector.png" alt="">
     </ul>`
     }
+    document.querySelector("main .quiz_creation:nth-child(4)").innerHTML += `<h2>Seu quizz está pronto!</h2>
+    <div onclick="forTheQuizz()" class="img_potterhead">
+        <img src="${quizzImage}" alt="">
+        <p>${quizzTitle}</p>
+    </div>
+    <button onclick="forTheQuizz()" class="button_acess">Acessar quiz</button>
+    <button onclick="forTheHome()"class="button_home">Voltar para home</button>`
+
     for (let i = 0; i<amountLevels-1;i++){
         document.querySelector("main .quiz_creation:nth-child(3)").innerHTML += `
         <ul  onclick="validateLevels()" class="other_question">
@@ -461,8 +469,7 @@ function forTheQuizz(){
 }
 
 function forTheHome(){
-    document.querySelector('main .quiz_creation:nth-child(4)').classList.add('hidden')
-    document.querySelector('.container').classList.remove('hidden')
+    location.reload()
 }
 
 function isURL(n){
@@ -514,41 +521,41 @@ function localStorageQuizz(v){
     console.log(v)
     if (v!==1){
     // Pega a lista do quizz coloca em uma lista maior, transforma ela em string e armazena no localStorage="local"
-    localStorageList.push(v)
-    console.log(v)
-    console.log(localStorageList)
-    const stringLocalStorageList = JSON.stringify(localStorageList)
+    const stringLocalStorageList = JSON.stringify(v)
     console.log(stringLocalStorageList)
-    localStorage.setItem("local",stringLocalStorageList); 
+    localStorage.setItem(quizzId,stringLocalStorageList); 
     }
     // Pega a variavel no formato string dentro do localStorage e transforma ela em Array novamente
-    console.log(localStorage.getItem("local"))
-    getString = localStorage.getItem("local")
-    console.log(getString)
-    const transformArray = JSON.parse(getString)
-    console.log(transformArray)
-    if(getString.length!==0){
-    document.querySelector('.createQuizz').classList.add("hidden")
-    document.querySelector('.yourQuizzes').classList.remove("hidden")
-    ShowQuizzesOne(transformArray)
+    const keys = Object.keys(localStorage);
+    
+    for(let i=0; i<keys.length; i++){
+        getString = localStorage.getItem(keys[i])
+        console.log(getString)
+        
+        const transformArray = JSON.parse(getString)
+        
+      
+        document.querySelector('.createQuizz').classList.add("hidden")
+        document.querySelector('.yourQuizzes').classList.remove("hidden")
+        ShowQuizzesOne(transformArray,keys.length)
+    
 }
 }
     
-function ShowQuizzesOne(response){
+function ShowQuizzesOne(response,tamanho){
     let quizList = response;
     const quizzes = document.querySelector('.downQuizzes')
-    quizzes.innerHTML=' '
-    console.log(response)
-    console.log(quizList)
-    for(let i = 0 ; i < quizList.length ; i++){
+    
+    
 
         quizzes.innerHTML +=
         `<div class="quizz" onclick="enterQuizz(this)">
-            <span class="idQuiz hidden">${quizList[i].id}</span>
-            <h2>${quizList[i].title} </h2>
-            <img src="${quizList[i].image}">
+            <span class="idQuiz hidden">${quizList.id}</span>
+            <h2>${quizList.title} </h2>
+            <img src="${quizList.image}">
             <div class="gradient"></div> 
         </div>`
 
-    }
+    
+    
 }
