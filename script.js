@@ -90,13 +90,15 @@ function openQuiz(response){
         color[i].style.background = `${questions[i].color}`
 
         answers = document.querySelectorAll('.answer');
-
         for(let a = 0; a < questions[i].answers.length; a++){
-            
+            let ta=""
+            if (i>0){
+                ta="disabled"
+            }
             if(questions[i].answers[a].isCorrectAnswer == true){
             answers[i].innerHTML += 
             `
-            <div class="true answers" onclick="answerQuestions(this)">
+            <div class="true answers ${ta}" onclick="answerQuestions(this)">
             <img src="${questions[i].answers[a].image}">
             <h2>${questions[i].answers[a].text}</h2>
             </div>
@@ -105,14 +107,16 @@ function openQuiz(response){
             } else {
                 answers[i].innerHTML += 
                 `
-                <div class="false answers" onclick="answerQuestions(this)">
+                <div class="false answers ${ta}" onclick="answerQuestions(this)">
                 <img src="${questions[i].answers[a].image}">
                 <h2>${questions[i].answers[a].text}</h2>
                 </div>
                 
                 `
             }
-        } 
+        }
+        
+         
         answers[i].innerHTML += `</div>`
     }
 }
@@ -124,10 +128,18 @@ function answerQuestions(element){
     let d = 0;
         while(d < questions[c].answers.length){
             if(answer[i].classList.contains('true')){
+                if (answer[i+questions[c].answers.length] !== undefined){
+                answer[i+questions[c].answers.length].classList.remove('disabled')
+                }
+                
                 answer[i].classList.add('certo')
                 answer[i].classList.add('opacity')
                 answer[i].classList.add('disabled')
             } else {
+                if (answer[i+questions[c].answers.length] !== undefined){
+                answer[i+questions[c].answers.length].classList.remove('disabled')
+                }
+                
                 answer[i].classList.add('opacity')
                 answer[i].classList.add('errado')
                 answer[i].classList.add('selected')
