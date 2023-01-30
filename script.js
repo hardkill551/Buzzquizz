@@ -114,9 +114,9 @@ function openQuiz(response){
                 
                 `
             }
-        }
-        
-         
+        } 
+
+
         answers[i].innerHTML += `</div>`
     }
 }
@@ -126,20 +126,21 @@ function answerQuestions(element){
     
     let answer = document.querySelectorAll('.answers');
     let d = 0;
+    
         while(d < questions[c].answers.length){
             if(answer[i].classList.contains('true')){
                 if (answer[i+questions[c].answers.length] !== undefined){
-                answer[i+questions[c].answers.length].classList.remove('disabled')
-                }
-                
+                    answer[i+questions[c].answers.length].classList.remove('disabled')
+                    }
+
                 answer[i].classList.add('certo')
                 answer[i].classList.add('opacity')
                 answer[i].classList.add('disabled')
             } else {
                 if (answer[i+questions[c].answers.length] !== undefined){
-                answer[i+questions[c].answers.length].classList.remove('disabled')
-                }
-                
+                    answer[i+questions[c].answers.length].classList.remove('disabled')
+                    }
+
                 answer[i].classList.add('opacity')
                 answer[i].classList.add('errado')
                 answer[i].classList.add('selected')
