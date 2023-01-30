@@ -283,43 +283,25 @@ function validateQuestion(){
     if (answerWrong3!==""){
         ct++
     }
-    let answersAll = []
-if (ct==1){
-        answersAll = {
-            text: answerWrong1,
-            image: ImageWrong1,
-            isCorrectAnswer:false
-        }
-    }
-if (ct==2){
-    answersAll = {
-        text: answerWrong1,
-        image: ImageWrong1,
-        isCorrectAnswer:false
-    },
-        {
-            text: answerWrong2,
-            image: ImageWrong2,
-            isCorrectAnswer:false
-        }
+let answer1 = []
+let answer2 = []
+let answer3 = []
+answer1={
+    text: answerWrong1,
+    image: ImageWrong1,
+    isCorrectAnswer:false
 }
-if (ct==3){
-    answersAll = {
-        text: answerWrong1,
-        image: ImageWrong1,
-        isCorrectAnswer:false
-    },
-        {
-            text: answerWrong2,
-            image: ImageWrong2,
-            isCorrectAnswer:false
-        },
-        {
-            text: answerWrong3,
-            image: ImageWrong3,
-            isCorrectAnswer:false
-        }
-    }
+answer2 =         {
+    text: answerWrong2,
+    image: ImageWrong2,
+    isCorrectAnswer:false
+}
+answer3 =         {
+    text: answerWrong3,
+    image: ImageWrong3,
+    isCorrectAnswer:false
+}
+if(ct==1){
     questionsAll = 
 		{
 			title: questionTitle,
@@ -330,10 +312,44 @@ if (ct==3){
 					image: imageCorrect,
 					isCorrectAnswer: true
 				},
-                answersAll
+                answer1
 			]
-		},
-	
+		}
+    }
+if (ct == 2){
+    questionsAll = 
+    {
+        title: questionTitle,
+        color: colorQuestion,
+        answers: [
+            {
+                text: answerCorrect,
+                image: imageCorrect,
+                isCorrectAnswer: true
+            },
+            answer1,
+            answer2
+        ]
+    }
+}
+if (ct == 3){
+    questionsAll = 
+    {
+        title: questionTitle,
+        color: colorQuestion,
+        answers: [
+            {
+                text: answerCorrect,
+                image: imageCorrect,
+                isCorrectAnswer: true
+            },
+            answer1,
+            answer2,
+            answer3
+        ]
+    }
+}
+	console.log(questionsAll)
     createQuiz.questions.push(questionsAll)
     count++
     document.querySelector(".box_question h3").innerHTML = `<h3>Pergunta ${count}</h3>`
