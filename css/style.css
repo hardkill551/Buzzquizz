@@ -76,11 +76,13 @@ header h1{
 }
 
 .topQuizzes{
-    width: 100vw;
+    width: 370px;;
     margin-top: 38px;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin-bottom: 5px;
+    margin-left: 5px;
 }
 
 .topQuizzes h1{
@@ -125,6 +127,7 @@ header h1{
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
 }
 
 .quizzes img{
@@ -491,11 +494,37 @@ textarea{
         width: 1051px;
         margin-top: 77px;
     }
+
+    .yourQuizzes{
+        width: 1051px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+    }
+    
+    .topQuizzPage h1{
+        font-size: 19px;
+        line-height: 22px;
+        color: #FFFFFF;
+        position: absolute;
+        z-index: 2;
+        bottom: 100px;
+    }
+    
+
     .topQuizzes{
         display: flex;
         align-items: center;
-        justify-content: center;
+        justify-content: flex-start;
     }
+
+    .topQuizzes h1{
+        margin-left: 0;
+        margin-right: 10px;
+    }
+
     .allQuizzes{
         display: flex;
         flex-direction: column;
@@ -519,7 +548,6 @@ textarea{
         align-items: center;
     }
     .quizzPage img{
-        margin-top: 69px;
         width: 100%;
         height: 227px;
         object-fit: cover;
@@ -533,6 +561,7 @@ textarea{
 
     .answer{
         width: 690px;
+        height: 200px;
         display: flex;
         flex-wrap: wrap;
     }
@@ -540,6 +569,7 @@ textarea{
     .answer img{
         width: 332px;
         height: 175px;
+        object-fit:cover;
     }
 
     main button {
